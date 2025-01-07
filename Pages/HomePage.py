@@ -6,7 +6,7 @@ class Home_Page(Base_Page):
         super().__init__(page)
 
     def home_page_elements_are_visible(self):
-        self.page.goto("https://webdriveruniversity.com/Page-Object-Model/index.html", wait_until='load')
+        self.go_to("https://webdriveruniversity.com/Page-Object-Model/index.html")
         expect(self.page.get_by_role("link", name="WebdriverUniversity.com (Page Object Model)")).to_be_visible()
         expect(self.page.locator("#carousel-example-generic")).to_be_visible()
         expect(self.page.get_by_role("link", name="Home")).to_be_visible()
@@ -28,7 +28,7 @@ class Home_Page(Base_Page):
         expect(self.page.get_by_role("button", name="Close")).to_be_visible()
 
     def button_actions(self):
-        self.page.goto("https://webdriveruniversity.com/Page-Object-Model/index.html", wait_until='load')
+        self.go_to("https://webdriveruniversity.com/Page-Object-Model/index.html")
         self.page.get_by_role("button", name="Find Out More!").scroll_into_view_if_needed()
 
         # Testing button actions
@@ -42,7 +42,7 @@ class Home_Page(Base_Page):
         self.page.get_by_role("button", name="×").click()
 
     def carousel(self):
-        self.page.goto("https://webdriveruniversity.com/Page-Object-Model/index.html", wait_until='load')
+        self.go_to("https://webdriveruniversity.com/Page-Object-Model/index.html")
 
         # Verify all carousel images are visible
         images_count = self.page.locator("//img[@class='slide-image']").count()

@@ -24,6 +24,8 @@ pytest -s -v  --video=retain-on-failure --headed
 pytest -s -v  --screenshot=only-on-failure
 playwright codegen --viewport-size="1890,910" https://test-newmerchant.smartbank.uz/login
 pytest Tests/test_fastloan_and_orders.py::test_check_limit --headed
+pytest --headed --slowmo=400 Tests/Test_ContactUs.py -s -v
+
 
 -----------------------------------------------------------------------
 
