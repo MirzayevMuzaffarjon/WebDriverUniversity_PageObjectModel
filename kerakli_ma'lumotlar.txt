@@ -1,0 +1,52 @@
+stages:
+  - test
+
+tests:
+  stage: test
+  image: mcr.microsoft.com/playwright/python:v1.44.0-jammy
+
+  script:
+    - pip install pytest-playwright pytest-html
+    - playwright install
+    - pytest -s -v --slowmo=50 --html=report.html --video=retain-on-failure
+
+  artifacts:
+     when: always
+     paths:
+       - report.html
+       - '**/*.webm'
+     expire_in: 1 monthpy
+
+
+pytest -s -v  --video=retain-on-failure
+pytest -s -v --slowmo=50 --html=report.html --video=retain-on-failure
+pytest -s -v  --video=retain-on-failure --headed
+pytest -s -v  --screenshot=only-on-failure
+playwright codegen --viewport-size="1890,910" https://test-newmerchant.smartbank.uz/login
+pytest Tests/test_fastloan_and_orders.py::test_check_limit --headed
+
+
+-----------------------------------------------------------------------
+
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    for browser_type in [p.chromium, p.firefox, p.webkit]:
+        browser = browser_type.launch()
+        print(f"{browser_type.name} successfully launched!")
+        browser.close()
+-----------------------------------------------------------------------
+
+from playwright.sync_api import sync_playwright
+
+with sync_playwright() as p:
+    print("Available browsers:")
+    for browser_type in [p.chromium, p.firefox, p.webkit]:
+        print(f"- {browser_type.name}")
+---------------------------------------------------------------
+try:
+    expect(self.page.get_by_role("link", name="Home")).to_be_visible()
+except AssertionError:
+    print("Home link ko'rinmadi!")
+--------------------------------------------------------------------------
+
