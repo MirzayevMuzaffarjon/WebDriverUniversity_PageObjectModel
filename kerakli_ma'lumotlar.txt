@@ -25,7 +25,6 @@ pytest -s -v  --screenshot=only-on-failure
 playwright codegen --viewport-size="1890,910" https://test-newmerchant.smartbank.uz/login
 pytest Tests/test_fastloan_and_orders.py::test_check_limit --headed
 
-
 -----------------------------------------------------------------------
 
 from playwright.sync_api import sync_playwright
